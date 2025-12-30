@@ -41,22 +41,34 @@
   <hr>
 
   <h2>現在のアラート</h2>
-  <ul>
-    {% for alert in alerts %}
-      <li>
-        {{ alert.ticker }} /
-        {{ alert.price }} /
-        {{ "上抜け" if alert.direction == "break_above" else "下抜け" }}
-
-        <a href="/edit/{{ alert.id }}">編集</a>
-
-        <form method="POST" action="/delete/{{ alert.id }}" style="display:inline;">
-          <button type="submit">削除</button>
-        </form>
-      </li>
-    {% else %}
-      <li>まだアラートはありません</li>
-    {% endfor %}
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>通貨ペア</th>
+        <th>価格</th>
+        <th>方向</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for alert in alerts %}
+        <tr>
+          <td>{{ alert.ticker }} /</td>
+          <td>{{ alert.price }} /</td>
+          <td>{{ "上抜け" if alert.direction == "break_above" else "下抜け" }}</td>
+          <td>
+            <a href="/edit/{{ alert.id }}">編集</a>
+            <form method="POST" action="/delete/{{ alert.id }}" style="display:inline;">
+              <button type="submit">削除</button>
+            </form>
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="4">まだアラートはありません</td>
+        </tr>
+      {% endfor %}
+    <tbody>
+  </table>
 </body>
 </html>

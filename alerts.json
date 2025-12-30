@@ -10,5 +10,11 @@
     "ticker": "EURJPY=X",
     "price": 183.905,
     "direction": "break_above"
+  },
+  {
+    "id": "3aaa3d23-224d-4ef0-96b4-c66825346de6",
+    "ticker": "USDJPY=X",
+    "price": 150.0,
+    "direction": "break_above"
   }
 ]

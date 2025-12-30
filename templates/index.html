@@ -7,7 +7,53 @@
   <title>FX Alert UI</title>
 </head>
 <body>
-    <h1>FX Alert UI</h1>
-    <p>Flask UI Step A 成功 🎉</p>
+  <h1>FX Alert UI</h1>
+
+  <h2>アラート追加</h2>
+  <form method="POST" action="/add">
+    <label>
+      通貨ペア:
+      <select name="ticker" required>
+        <option value="USDJPY=X">USDJPY</option>
+        <option value="EURUSD=X">EURUSD</option>
+        <option value="GBPUSD=X">GBPUSD</option>
+      </select>
+    </label>
+    <br><br>
+
+    <label>
+      価格:
+      <input type="number" name="price" step="0.0001" required>
+    </label>
+    <br><br>
+
+    <label>
+      方向:
+      <input type="radio" name="direction" value="break_above" checked> 上抜け
+      <input type="radio" name="direction" value="break_below"> 下抜け
+    </label>
+    <br><br>
+
+    <button type="submit">追加</button>
+  </form>
+
+  <hr>
+
+  <h2>現在のアラート</h2>
+  <ul>
+    {% for alert in alerts %}
+      <li>
+        {{ alert.ticker }} /
+        {{ alert.price }} /
+        {{ "上抜け" if alert.direction == "break_above" else "下抜け" }}
+
+        <form method="POST" action="/delete/{{ alert.id }}" style="display:inline;">
+          <button type="submit">削除</button>
+        </form>
+      </li>
+    {% else %}
+      <li>まだアラートはありません</li>
+    {% endfor %}
+  </ul>
 </body>
 </html>

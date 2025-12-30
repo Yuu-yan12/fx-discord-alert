@@ -1,14 +1,14 @@
 [
   {
-    "id": "3494cd7c-2393-44df-b420-9eb49dc75545",
-    "ticker": "EURUSD=X",
-    "price": 1.0007,
+    "id": "e997164a-1ded-4b6f-b890-8a925a641a12",
+    "ticker": "USDJPY=X",
+    "price": 156.235,
     "direction": "break_below"
   },
   {
-    "id": "1f137a61-700a-43c7-8840-270046b75e1b",
-    "ticker": "USDJPY=X",
-    "price": 150.0007,
+    "id": "ca1318e4-16d2-4429-8d1c-0ead6b47a294",
+    "ticker": "EURJPY=X",
+    "price": 183.905,
     "direction": "break_above"
   }
 ]

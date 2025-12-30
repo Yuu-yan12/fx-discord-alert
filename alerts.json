@@ -4,5 +4,11 @@
     "ticker": "EURUSD=X",
     "price": 1.0007,
     "direction": "break_below"
+  },
+  {
+    "id": "1f137a61-700a-43c7-8840-270046b75e1b",
+    "ticker": "USDJPY=X",
+    "price": 150.0007,
+    "direction": "break_above"
   }
 ]

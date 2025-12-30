@@ -40,5 +40,23 @@ def delete_alert(alert_id):
     save_alerts(alerts)
     return redirect(url_for("index"))
 
+@app.route("/edit/<alert_id>", methods=["GET", "POST"])
+def edit_alert(alert_id):
+    alerts = load_alerts()
+    alert = next((a for a in alerts if a["id"] == alert_id), None)
+
+    if alert is None:
+        return redirect(url_for("index"))
+
+    if request.method == "POST":
+        alert["ticker"] = request.form["ticker"]
+        alert["price"] = float(request.form["price"])
+        alert["direction"] = request.form["direction"]
+        save_alerts(alerts)
+        return redirect(url_for("index"))
+
+    return render_template("edit.html", alert=alert)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

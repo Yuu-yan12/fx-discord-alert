@@ -47,6 +47,8 @@
         {{ alert.price }} /
         {{ "上抜け" if alert.direction == "break_above" else "下抜け" }}
 
+        <a href="/edit/{{ alert.id }}">編集</a>
+
         <form method="POST" action="/delete/{{ alert.id }}" style="display:inline;">
           <button type="submit">削除</button>
         </form>

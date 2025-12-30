@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <h1>アラート編集</h1>
+
+  <form method="POST">
+    <label>
+      通貨ペア:
+      <select name="ticker">
+        <option value="USDJPY=X" {{ "selected" if alert.ticker=="USDJPY=X" else "" }}>USDJPY</option>
+        <option value="EURUSD=X" {{ "selected" if alert.ticker=="EURUSD=X" else "" }}>EURUSD</option>
+        <option value="GBPUSD=X" {{ "selected" if alert.ticker=="GBPUSD=X" else "" }}>GBPUSD</option>
+      </select>
+    </label>
+    <br><br>
+
+    <label>
+      価格:
+      <input type="number" name="price" step="0.0001" value="{{ alert.price }}" required>
+    </label>
+    <br><br>
+
+    <label>
+      方向:
+      <input type="radio" name="direction" value="break_above"
+        {{ "checked" if alert.direction=="break_above" else "" }}> 上抜け
+      <input type="radio" name="direction" value="break_below"
+        {{ "checked" if alert.direction=="break_below" else "" }}> 下抜け
+    </label>
+    <br><br>
+
+    <button type="submit">保存</button>
+    <a href="{{ url_for('index') }}">キャンセル</a>
+  </form>
+</body>
+</html>

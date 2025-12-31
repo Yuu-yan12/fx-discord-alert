@@ -1,10 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for
+from dotenv import load_dotenv
 import json
 import uuid
 import threading
 import time
 import requests
 import yfinance as yf
+import os
+
+load_dotenv()
+
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+CHECK_INTERVAL = int(os.getenv("CHECK_INTERVAL", 60))
 
 
 app = Flask(__name__)
@@ -63,11 +70,12 @@ def edit_alert(alert_id):
 
     return render_template("edit.html", alert=alert)
 
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1455244327830945934/g3Fsmufx-LTlXzc-PLmpQKdEn0ThFEFfFm9Oy57Wc0lY0kQHo-RnILEBDGkNuU4WNqj9"
 
 def send_discord(message: str) -> None:
-    payload = {"content": message}
-    requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=10)
+    if not DISCORD_WEBHOOK_URL:
+        print("⚠️ DISCORD_WEBHOOK_URL が未設定です")
+        return
+    requests.post(DISCORD_WEBHOOK_URL, json={"content": message}, timeout=10)
 
 def get_latest_prices(ticker: str):
     df = yf.download(

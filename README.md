@@ -21,7 +21,7 @@ Discordへ通知する Flask 製 Web アプリです。
 ```bash
 pip install -r requirements.txt
 python app.py
-
+```
 
 ## Notes
 - This project is for learning purposes.
